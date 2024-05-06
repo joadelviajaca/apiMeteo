@@ -1,0 +1,52 @@
+[
+    {
+      "name": "Madrid",
+      "lat": 40.416775,
+      "lon": -3.70379,
+      "country": "ES",
+      "timezone": 3600
+    },
+    {
+      "name": "Barcelona",
+      "lat": 41.385063,
+      "lon": 2.173404,
+      "country": "ES",
+      "timezone": 3600
+    },
+    {
+      "name": "Valencia",
+      "lat": 39.46975,
+      "lon": -0.37739,
+      "country": "ES",
+      "timezone": 3600
+    },
+    {
+      "name": "Seville",
+      "lat": 37.38863,
+      "lon": -5.98214,
+      "country": "ES",
+      "timezone": 3600
+    },
+    {
+      "name": "Zaragoza",
+      "lat": 41.648822,
+      "lon": -0.889085,
+      "country": "ES",
+      "timezone": 3600
+    },
+    {
+      "name": "Málaga",
+      "lat": 36.721302,
+      "lon": -4.421636,
+      "country": "ES",
+      "timezone": 3600
+    },
+    {
+      "name": "Murcia",
+      "lat": 37.98381,
+      "lon": -1.12994,
+      "country": "ES",
+      "timezone": 3600
+    }
+  ]
+  
