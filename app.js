@@ -65,15 +65,26 @@ const citiesData = [
   }
 ]
 
+const weatherDescriptions = [
+  'clear sky',
+  'few clouds',
+  'scattered clouds',
+  'broken clouds',
+  'shower rain',
+  'rain',
+  'thunderstorm',
+  'snow',
+  'mist'
+];
 
 // Endpoint para obtener las coordenadas de una ciudad
 app.get('/api/coordinates', (req, res) => {
   const { q } = req.query;
-  if(!q) {
+  if (!q) {
     return res.status(404).json({ error: 'Query param q is required' });
   }
   const city = citiesData.find(city => city.name.toLowerCase() === q.toLowerCase());
-  
+
 
   if (city) {
     const { lat, lon } = city;
@@ -86,10 +97,13 @@ app.get('/api/coordinates', (req, res) => {
 // Endpoint para obtener el pronóstico del tiempo
 app.get('/api/weather', (req, res) => {
   const { lat, lon } = req.query;
-  console.log('lat: ',lat,' lon: ', lon)
+  console.log('lat: ', lat, ' lon: ', lon)
   const city = citiesData.find(city => city.lat == lat && city.lon == lon);
+  
 
   if (city) {
+    const randomIndex = Math.floor(Math.random() * weatherDescriptions.length);
+    const randomWeatherDescription = weatherDescriptions[randomIndex];
     const { name, country, timezone } = city;
     const temperature = Math.round(Math.random() * (40 - (-10)) + (-10));
     const feels_like = Math.round(Math.random() * (40 - (-10)) + (-10));
@@ -107,14 +121,14 @@ app.get('/api/weather', (req, res) => {
         humidity: { _attributes: { value: humidity, unit: '%' } },
         pressure: { _attributes: { value: pressure, unit: 'hPa' } },
         wind: { speed: { _attributes: { value: windSpeed, unit: 'm/s' } } },
-        weather: { _attributes: { number: weatherCode } },
+        weather: { _attributes: { number: weatherCode, value: randomWeatherDescription } },
         lastupdate: { _attributes: { value: new Date().toISOString() } }
       }
     };
 
     const options = { compact: true, ignoreComment: true, spaces: 4 };
     const xmlData = convert.json2xml(weatherXML, options);
-    
+
     res.header('Content-Type', 'application/xml');
     res.status(200).send(xmlData);
   } else {
